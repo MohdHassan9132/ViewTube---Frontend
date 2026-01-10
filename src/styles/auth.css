@@ -1,0 +1,121 @@
+/* MAIN CONTAINER */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f6f7f9;
+}
+
+/* AUTH CARD */
+.auth-box {
+  width: 380px;
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+.auth-box h2 {
+  margin-bottom: 20px;
+  color: #10b981;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* INPUTS */
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  outline: none;
+  font-size: 14px;
+}
+
+/* PASSWORD WRAPPER */
+.password-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding-right: 10px;
+  background: white;
+  height: 46px;
+  margin-bottom: 15px;
+}
+
+/* Input inside password wrapper */
+.password-wrapper input {
+  border: none;
+  flex: 1;
+  height: 100%;
+  padding: 12px;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+}
+
+/* Eye icon */
+.eye-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.eye-toggle:hover {
+  opacity: 1;
+}
+
+/* BUTTON */
+.auth-box button {
+  width: 100%;
+  padding: 12px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.auth-box button:hover {
+  background: #0c8c66;
+}
+
+/* TEXT */
+.auth-box p {
+  text-align: center;
+  margin-top: 15px;
+  color: #444;
+  font-size: 14px;
+}
+
+/* LINK */
+.auth-link {
+  color: #10b981;
+  text-decoration: none;
+  font-weight: 500;
+}
+.file-label {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 6px;
+  display: block;
+  font-weight: 500;
+}
+
+.file-input {
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  outline: none;
+}

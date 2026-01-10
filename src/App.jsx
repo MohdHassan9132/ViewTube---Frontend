@@ -1,24 +1,39 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Users from "../src/Pages/User.jsx";
-import Videos from "../src/pages/Videos.jsx";
+import { Routes, Route } from "react-router-dom";
 
+import Home from "./Pages/Home.jsx";
+import PublishStudio from "./Pages/PublishStuido.jsx";
+import Login from "./Pages/Auth/Login.jsx";
+import Register from "./Pages/Auth/Register.jsx";
+import ProtectedRoute from "./routes/ProtectedRoutes.jsx";
+import AppLayout from "./Layout/AppLayout.jsx";
+import YourVideos from './Pages/YourVideos.jsx'
+import UpdateVideo from './Pages/UpdateVideo.jsx'
+import VideoPage from "./Pages/VideoPage.jsx";
+import WatchHistory from "./Pages/WatchHistory.jsx";
+import ChannelPage from './Pages/ChannelPage.jsx'
 function App() {
   return (
-    <div>
+    <Routes>
 
-      {/* Simple navigation */}
-      <nav>
-        <Link to="/users">Users</Link>
-        <Link to="/videos">Videos</Link>
-      </nav>
+      {/* Public routes */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
-      {/* Routing */}
-      <Routes>
-        <Route path="/users" element={<Users />} />
-        <Route path="/videos" element={<Videos />} />
-      </Routes>
+      {/* Protected routes */}
+    <Route element={<ProtectedRoute />}>
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/channel/:username" element={<ChannelPage />} />
+        <Route path="/studio/upload" element={<PublishStudio hideSidebar/>} />
+        <Route path="/your-videos" element={<YourVideos hideSidebar/>} />
+        <Route path="/update-video/:videoId" element={<UpdateVideo hideSidebar/>} />
+        <Route path="/video/:videoId" element={<VideoPage hideSidebar />} />
+        <Route path="/history" element={<WatchHistory hideSidebar/>} />
+      </Route>
+    </Route>
 
-    </div>
+
+    </Routes>
   );
 }
 

@@ -1,0 +1,96 @@
+.studio-page {
+  padding: 30px;
+  background: #f6f7f9;
+  min-height: 100vh;
+}
+
+.studio-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #10b981;
+}
+
+.studio-content {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* Form Section */
+.upload-section {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+}
+
+.upload-form {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.upload-form input,
+.upload-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.upload-btn {
+  padding: 12px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background: #0c8c66;
+}
+
+/* Preview Section */
+.preview-box {
+  width: 40%;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.preview-thumb {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+/* Video with fixed 16:9 ratio */
+.preview-video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  background: #000;
+  object-fit: cover;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+  .studio-content {
+    flex-direction: column;
+  }
+
+  .preview-box {
+    width: 100%;
+  }
+
+  .upload-section {
+    flex-direction: column;
+  }
+}

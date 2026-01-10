@@ -1,33 +1,33 @@
 import api from "../axiosInstance";
 
-export const registerUserApi = (form) => api.post("/user/register", form);
-export const loginUserApi = (data) => api.post("/user/login", data);
+// Auth
+export const registerUserApi = form => api.post("/user/register", form);
+export const loginUserApi = data => api.post("/user/login", data);
 export const logoutUserApi = () => api.post("/user/logout");
-export const getUserApi = () => api.get("/user/getUser");
 export const refreshAccessTokenApi = () => api.post("/user/refreshAccessToken");
-export const updateUserDetailsApi = (data) => {
-  return api.patch("/user/updateUserDetails", data);
-};
-export const changePasswordApi = (data) => {
-  return api.post("/user/changeCurrentPassword", data);
-};
-export const updateAvatarApi = (formData) => {
-  return api.patch("/user/updateUserAvatar", formData, {
-    headers: { "Content-Type": "multipart/form-data" }
+
+// User Profile
+export const getUserApi = () => api.get("/user/getUser");
+export const updateUserDetailsApi = data =>
+  api.patch("/user/updateUserDetails", data);
+export const changePasswordApi = data =>
+  api.post("/user/changeCurrentPassword", data);
+
+// Avatars / Cover
+export const updateAvatarApi = form =>
+  api.patch("/user/updateUserAvatar", form, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
-};
-export const updateCoverImageApi = (formData) => {
-  return api.patch("/user/updateUserCoverImage", formData, {
-    headers: { "Content-Type": "multipart/form-data" }
+
+export const updateCoverImageApi = form =>
+  api.patch("/user/updateUserCoverImage", form, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
-};
-export const getUserChannelProfileApi = (username) => {
-  return api.get(`/user/getUserChannelProfile/${username}`);
-};
-export const getWatchHistoryApi = () => {
-  return api.get("/user/getUserWatchHistory");
-};
 
+// Channel Profile
+export const getUserChannelProfileApi = username =>
+  api.get(`/user/getUserChannelProfile/${username}`);
 
-
-
+// Watch History
+export const getWatchHistoryApi = () =>
+  api.get("/user/getUserWatchHistory");
