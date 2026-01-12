@@ -1,12 +1,12 @@
 
 ```
 ViewTube---Frontend
+├─ .env
 ├─ eslint.config.js
 ├─ index.html
 ├─ package-lock.json
 ├─ package.json
 ├─ public
-│  └─ vite.svg
 ├─ README.md
 ├─ src
 │  ├─ api
@@ -30,7 +30,6 @@ ViewTube---Frontend
 │  ├─ App.css
 │  ├─ App.jsx
 │  ├─ assets
-│  │  └─ react.svg
 │  ├─ components
 │  │  ├─ channel
 │  │  │  ├─ ChannelHomeTab.jsx
@@ -45,6 +44,7 @@ ViewTube---Frontend
 │  │  │  └─ Sidebar.jsx
 │  │  ├─ User
 │  │  └─ Video
+│  │     ├─ LikedVideoCard.jsx
 │  │     ├─ PublishVideoForm.jsx
 │  │     ├─ VideoGrid.jsx
 │  │     └─ YourVideoCard.jsx
@@ -60,6 +60,7 @@ ViewTube---Frontend
 │  │  │  └─ Register.jsx
 │  │  ├─ ChannelPage.jsx
 │  │  ├─ Home.jsx
+│  │  ├─ LikedVideos.jsx
 │  │  ├─ PublishStuido.jsx
 │  │  ├─ UpdateVideo.jsx
 │  │  ├─ VideoPage.jsx
@@ -73,6 +74,7 @@ ViewTube---Frontend
 │  │  ├─ comments.css
 │  │  ├─ header.css
 │  │  ├─ home.css
+│  │  ├─ LikedVideos.css
 │  │  ├─ publish.css
 │  │  ├─ sidebar.css
 │  │  ├─ videoView.css
