@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import LikedVideos from "./Pages/LikedVideos.jsx";
 import Home from "./Pages/Home.jsx";
-import PublishStudio from "./Pages/PublishStuido.jsx";
+import PublishStudio from "./Pages/PublishStudio.jsx";
 import Login from "./Pages/Auth/Login.jsx";
 import Register from "./Pages/Auth/Register.jsx";
 import ProtectedRoute from "./routes/ProtectedRoutes.jsx";
