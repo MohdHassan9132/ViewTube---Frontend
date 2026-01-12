@@ -18,13 +18,21 @@ function ChannelPlaylistsTab({ userId }) {
     loadPlaylists();
   }, [userId]);
 
-  return (
-    <div className="playlist-grid">
-      {playlists.map((pl) => (
-        <PlaylistCard key={pl._id} playlist={pl} />
-      ))}
-    </div>
-  );
+return (
+  <div className="playlist-grid">
+    {playlists.map((pl) => (
+      <div
+        key={pl._id}
+        className="playlist-click-wrapper"
+        onClick={() => alert(`Playlist feature comming soon`)}
+        style={{ cursor: "pointer" }}
+      >
+        <PlaylistCard playlist={pl} />
+      </div>
+    ))}
+  </div>
+);
+
 }
 
 export default ChannelPlaylistsTab;

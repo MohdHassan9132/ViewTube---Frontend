@@ -1,0 +1,86 @@
+/* PAGE */
+.liked-videos-page {
+  padding: 20px;
+}
+
+.liked-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* LIST */
+.liked-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* CARD */
+.liked-card {
+  display: flex;
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.10);
+  gap: 15px;
+  align-items: flex-start;
+}
+
+/* THUMB */
+.liked-thumb {
+  width: 180px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* INFO */
+.liked-info {
+  flex: 1;
+}
+
+.liked-title-text {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+/* META */
+.liked-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.liked-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+/* ACTIONS */
+.liked-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.liked-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.liked-btn.unlike {
+  background: #ff5252;
+  color: white;
+}
+
+.liked-btn.share {
+  background: #ececec;
+  color: #333;
+}

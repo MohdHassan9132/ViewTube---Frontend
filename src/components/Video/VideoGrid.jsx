@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllVideosApi } from "../../api/video/videoApi";
 import { Link, useNavigate } from "react-router-dom";
+import timeAgo from '../../utils/timeago'
 import "../../styles/home.css";
 
 function VideoGrid({ videos = null }) {
@@ -62,7 +63,10 @@ function VideoGrid({ videos = null }) {
             <div className="info-text">
               <h3 className="info-title">{v.title}</h3>
               <p className="info-meta">{v.owner.username}</p>
-              <p className="info-meta">{v.views} views</p>
+             <p className="info-meta">
+                {v.views} views • {timeAgo(v.createdAt)}
+             </p>
+
             </div>
           </div>
         </Link>

@@ -1,4 +1,4 @@
-export default function timeago(date) {
+export default function timeAgo(date) {
   const now = new Date();
   const then = new Date(date);
   const diff = (then - now) / 1000; // seconds difference (negative if in the past)

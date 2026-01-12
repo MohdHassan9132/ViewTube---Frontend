@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink,Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import { getSubscribedChannelsApi } from "../../api/subscription/subscriptionApi";
 
@@ -19,6 +19,12 @@ function Sidebar() {
     }
   }
 
+  // CLICK HANDLER FOR LIKED PLAYLISTS
+  function handleLikedPlaylistsClick(e) {
+    e.preventDefault(); // stop navigation
+    alert("Liked Playlists feature coming soon!");
+  }
+
   return (
     <aside className="sidebar">
       
@@ -27,20 +33,29 @@ function Sidebar() {
       <p className="side-label">Subscriptions</p>
       {subs.map((sub) => (
         <Link
-  to={`/channel/${sub.channel.username}`}
-  key={sub._id}
-  className="sub-item"
->
-  <img className="sub-avatar" src={sub.channel.avatar} />
-  <span>{sub.channel.username}</span>
-</Link>
-
+          to={`/channel/${sub.channel.username}`}
+          key={sub._id}
+          className="sub-item"
+        >
+          <img className="sub-avatar" src={sub.channel.avatar} />
+          <span>{sub.channel.username}</span>
+        </Link>
       ))}
 
       <hr className="side-divider" />
 
       <NavLink to="/history" className="side-btn">🕒 History</NavLink>
-      <NavLink to="/liked-playlists" className="side-btn">📁 Liked Playlists</NavLink>
+
+      {/* Liked Playlists — show alert */}
+<button
+  className="side-btn"
+  onClick={handleLikedPlaylistsClick}
+  style={{ background: "transparent", border: "none", textAlign: "left" }}
+>
+  📁 Liked Playlists
+</button>
+
+
       <NavLink to="/liked-videos" className="side-btn">👍 Liked Videos</NavLink>
       <NavLink to="/your-videos" className="side-btn">🎥 Your Videos</NavLink>
 

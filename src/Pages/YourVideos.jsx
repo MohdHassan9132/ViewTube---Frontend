@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getAllVideosApi } from "../api/video/videoApi";
-import VideoGrid from "../components/Video/VideoGrid";
+import { getAllVideosApi, togglePublishStatusApi, deleteVideoApi } from "../api/video/videoApi";
+import YourVideoCard from "../components/Video/YourVideoCard";
+import "../styles/yourVideos.css";
 
 function YourVideos() {
   const [videos, setVideos] = useState([]);
@@ -11,11 +12,9 @@ function YourVideos() {
   async function loadVideos() {
     try {
       const res = await getAllVideosApi({ userId });
-      const list = res.data?.data?.videos || [];
-      setVideos(list);
+      setVideos(res.data?.data?.videos || []);
     } catch (err) {
-      console.log("YOUR VIDEOS ERROR:", err);
-      setVideos([]);
+      console.log("LOAD VIDEOS ERROR:", err);
     }
     setLoading(false);
   }
@@ -24,19 +23,55 @@ function YourVideos() {
     loadVideos();
   }, []);
 
+  // Toggle publish button
+  async function handleTogglePublish(id) {
+    try {
+      await togglePublishStatusApi(id);
+      loadVideos();
+    } catch (err) {
+      console.log("TOGGLE ERROR:", err);
+    }
+  }
+
+  // Delete button
+  async function handleDelete(id) {
+    if (!confirm("Delete this video?")) return;
+
+    try {
+      await deleteVideoApi(id);
+      loadVideos();
+    } catch (err) {
+      console.log("DELETE ERROR:", err);
+    }
+  }
+
+  // Feature button (just UI, not functional yet)
+  function handleFeature(id) {
+    alert("Feature functionality will be added later.");
+  }
+
   return (
-    <div className="home-main">
-      <h2 style={{ marginBottom: 20 }}>Your Videos</h2>
+    <div className="your-video-page">
+
+      <h2 className="yv-title">Your Videos</h2>
 
       {loading && <p>Loading...</p>}
 
       {!loading && videos.length === 0 && (
-        <p>You haven't uploaded any videos yet.</p>
+        <p>No videos uploaded yet.</p>
       )}
 
-      {!loading && videos.length > 0 && (
-        <VideoGrid videos={videos} />
-      )}
+      <div className="your-videos-list">
+        {videos.map((v) => (
+          <YourVideoCard
+            key={v._id}
+            video={v}
+            onTogglePublish={handleTogglePublish}
+            onDelete={handleDelete}
+            onFeature={handleFeature}
+          />
+        ))}
+      </div>
     </div>
   );
 }

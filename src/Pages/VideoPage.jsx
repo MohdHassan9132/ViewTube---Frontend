@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams,Link } from "react-router-dom";
+import timeAgo from "../utils/timeago";
 
 import {
   fetchCommentsApi,
@@ -149,7 +150,10 @@ function VideoPage() {
         <h2 className="video-title-main">{video?.title}</h2>
 
         <div className="video-stats-row">
-          <p>{video?.views} views</p>
+          <p className="duration">
+  {video?.views} views • {timeAgo(video?.createdAt)}
+</p>
+
 
           <button
             className={`like-btn ${video?.isLiked ? "liked" : ""}`}
@@ -240,16 +244,25 @@ function VideoPage() {
 
       {/* RIGHT SECTION */}
       <div className="video-right">
-        {recommended?.map((video) => (
-          <div className="recommend-card" key={video?._id}>
-            <img src={video?.thumbnail} className="recommend-thumb" alt="thumb" />
-            <div className="recommend-info">
-              <h4>{video?.title}</h4>
-              <p>{video?.owner?.username}</p>
-              <p className="duration">{Math.floor(video?.duration)} sec</p>
-            </div>
-          </div>
-        ))}
+        {recommended?.map((v) => (
+  <Link
+    to={`/video/${v._id}`}
+    key={v._id}
+    className="recommend-card"
+    style={{ textDecoration: "none", color: "inherit" }}
+  >
+    <img src={v.thumbnail} className="recommend-thumb" alt="thumb" />
+    
+    <div className="recommend-info">
+      <h4>{v.title}</h4>
+      <p>{v.owner?.username}</p>
+      <p className="duration">
+        {v.views} views • {timeAgo(v.createdAt)}
+      </p>
+    </div>
+  </Link>
+))}
+
       </div>
 
     </div>

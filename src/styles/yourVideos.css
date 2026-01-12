@@ -1,0 +1,72 @@
+.your-video-page {
+  padding: 20px;
+}
+
+.yv-title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Container grid */
+.your-videos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Card */
+.your-video-card {
+  display: flex;
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  align-items: center;
+  gap: 15px;
+}
+
+/* Thumbnail */
+.your-video-thumb img {
+  width: 150px;
+  height: 90px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Info */
+.your-video-info {
+  flex: 1;
+}
+
+.your-video-title {
+  font-size: 17px;
+  margin: 0;
+}
+
+.your-video-meta {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Buttons */
+.your-video-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.yv-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+/* Individual button colors */
+.yv-publish { background: #10b981; }
+.yv-update { background: #3b82f6; text-align: center; text-decoration: none; }
+.yv-delete { background: #ef4444; }
+.yv-feature { background: #f59e0b; }

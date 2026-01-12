@@ -1,36 +1,61 @@
 import axios from "axios";
-import { refreshAccessTokenApi } from "./user/userApi";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/api/v1",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
 let isRefreshing = false;
+let failedQueue = [];
+
+const processQueue = (error, token = null) => {
+  failedQueue.forEach(prom => {
+    if (error) prom.reject(error);
+    else prom.resolve(token);
+  });
+  failedQueue = [];
+};
 
 api.interceptors.response.use(
-  response => response,
+  res => res,
+  async err => {
+    const originalRequest = err.config;
+    const status = err.response?.status;
 
-  async error => {
-    const originalRequest = error.config;
-    const status = error?.response?.status;
+    // Don't refresh when login failed
+    if (originalRequest.url.includes("/user/login")) {
+      return Promise.reject(err);
+    }
 
-    if (status === 498 && !isRefreshing) {
+    if ((status === 498 || status === 401) && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        })
+          .then(() => api(originalRequest))
+          .catch(err => Promise.reject(err));
+      }
+
       isRefreshing = true;
 
       try {
-        await refreshAccessTokenApi();
+        await api.post("/user/refreshAccessToken", {}, { withCredentials: true });
         isRefreshing = false;
+        processQueue(null);
         return api(originalRequest);
-      } catch (err) {
+      } catch (refreshError) {
         isRefreshing = false;
+        processQueue(refreshError, null);
         window.location.href = "/login";
-        return Promise.reject(err);
+        return Promise.reject(refreshError);
       }
     }
 
-    return Promise.reject(error);
+    return Promise.reject(err);
   }
 );
+
 
 export default api;

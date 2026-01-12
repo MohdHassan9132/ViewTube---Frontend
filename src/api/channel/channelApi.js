@@ -26,3 +26,6 @@ export const getChannelTweetsApi = ({
   api.get(`/tweet/getUserTweets`, {
     params: { userId, page, limit, sortBy, sortType, query }
   });
+
+export const toggleChannelSubscriptionApi = channelId => 
+  api.post(`/subscription/toggleSubscription/${channelId}`);
