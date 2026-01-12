@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getLikedVideosApi, toggleVideoLikeApi } from "../api/like/likeApi";
 import LikedVideoCard from "../components/Video/LikedVideoCard";
-import "../styles/likedVideos.css";
+import "../styles/LikedVideos.css";
 
 function LikedVideos() {
   const [videos, setVideos] = useState([]);
