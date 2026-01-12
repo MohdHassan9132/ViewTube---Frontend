@@ -1,4 +1,4 @@
-import PublishVideoForm from "../components/video/PublishVideoForm";
+import PublishVideoForm from "../components/Video/PublishVideoForm";
 import "../styles/publish.css";
 
 function PublishStudio() {
