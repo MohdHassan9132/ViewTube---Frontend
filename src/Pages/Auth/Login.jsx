@@ -2,12 +2,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserApi } from "../../api/user/userApi";
 import { useAuth } from "../../context/AuthContext";
-import "../../styles/auth.css";
+import "./Auth.css";
 
 function Login() {
   const navigate = useNavigate();
   const { setUser, reloadUser } = useAuth();
-
   const [showPass, setShowPass] = useState(false);
   const [data, setData] = useState({
     username: "",

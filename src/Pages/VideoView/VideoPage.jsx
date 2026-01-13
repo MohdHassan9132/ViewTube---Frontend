@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams,Link } from "react-router-dom";
-import timeAgo from "../utils/timeago";
+import timeAgo from "../../utils/timeago";
 
 import {
   fetchCommentsApi,
   addCommentApi,
   deleteCommentApi
-} from "../api/comment/commentApi";
+} from "../../api/comment/commentApi";
 
 import {
   getVideoByIdApi,
   recordVideoViewApi,
   getAllVideosApi,
-} from "../api/video/videoApi";
+} from "../../api/video/videoApi";
 
-import { toggleVideoLikeApi } from "../api/like/likeApi";
-import { toggleSubscriptionApi } from "../api/subscription/subscriptionApi";
+import { toggleVideoLikeApi } from "../../api/like/likeApi";
+import { toggleSubscriptionApi } from "../../api/subscription/subscriptionApi";
 
-import "../styles/videoView.css";
-import "../styles/comments.css";
+import '../VideoView/VideoView.css'
+import '../VideoView/Comments.css'
 
 function VideoPage() {
   const { videoId } = useParams();
@@ -179,7 +179,7 @@ function VideoPage() {
               className={`sub-btn ${video.owner.isSubscribed ? "subscribed" : ""}`}
               onClick={handleToggleSubscribe}
           >
-            {video.owner.isSubscribed ? "Subscribed" : "Subscribe"} • {video.owner.subscribers}
+            {video.owner.isSubscribed ? "Subscribed" : "Subscribe"} 
           </button>
 
         </div>

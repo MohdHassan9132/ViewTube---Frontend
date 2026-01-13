@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getAllVideosApi, togglePublishStatusApi, deleteVideoApi } from "../api/video/videoApi";
-import YourVideoCard from "../components/Video/YourVideoCard";
-import "../styles/yourVideos.css";
+import { getAllVideosApi, togglePublishStatusApi, deleteVideoApi } from "../../api/video/videoApi";
+import YourVideoCard from "../../components/Video/YourVideoCard";
+import "../YourVideos/YourVideos.css";
 
 function YourVideos() {
   const [videos, setVideos] = useState([]);

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllVideosApi } from "../../api/video/videoApi";
+import { getAllVideosApi } from "../../../api/video/videoApi";
 import { Link, useNavigate } from "react-router-dom";
-import timeAgo from '../../utils/timeago'
-import "../../styles/home.css";
+import timeAgo from '../../../utils/timeago'
+import "../VideoGrid/VideoGrid.css";
 
 function VideoGrid({ videos = null }) {
   const [videoList, setVideoList] = useState([]);

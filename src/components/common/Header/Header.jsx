@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import { logoutUserApi } from "../../api/user/userApi";
-import "../../styles/header.css";
+import { useAuth } from "../../../context/AuthContext";
+import { logoutUserApi } from "../../../api/user/userApi";
+import "../Header/Header.css";
 
 function Header({ toggleSidebar }) {
+  const [showSearch, setShowSearch] = useState(false);
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -24,12 +25,11 @@ function Header({ toggleSidebar }) {
     }
   }
 
-  return (
+return (
+  <>
     <header className="app-header">
-
       <div className="header-left">
         <button className="menu-btn" onClick={toggleSidebar}>☰</button>
-
         <Link to="/" className="header-logo">V</Link>
 
         <input
@@ -40,32 +40,41 @@ function Header({ toggleSidebar }) {
       </div>
 
       <div className="header-right">
+        <button
+          className="header-icon mobile-search-icon"
+          onClick={() => setShowSearch(!showSearch)}
+        >
+          🔍
+        </button>
+
         <Link to="/studio/upload" className="header-btn">Upload</Link>
         <button className="header-icon">🔔</button>
 
-        <div
-          className="header-profile"
-          onClick={() => setOpenMenu(!openMenu)}
-        >
-          <img
-            src={user?.avatar || "/default-avatar.png"}
-            className="header-avatar"
-            alt="profile"
-          />
-
+        <div className="header-profile" onClick={() => setOpenMenu(!openMenu)}>
+          <img src={user?.avatar || "/default-avatar.png"} className="header-avatar" />
           {openMenu && (
             <div className="profile-dropdown">
               <p className="profile-name">{user?.username}</p>
-              <button className="dropdown-item" onClick={handleLogout}>
-                Logout
-              </button>
+              <button className="dropdown-item" onClick={handleLogout}>Logout</button>
             </div>
           )}
         </div>
       </div>
-
     </header>
-  );
+
+    {/* Mobile search dropdown OUTSIDE header */}
+    {showSearch && (
+      <div className="mobile-search-dropdown">
+        <input
+          type="text"
+          className="mobile-search-input"
+          placeholder="Search..."
+        />
+      </div>
+    )}
+  </>
+);
+
 }
 
 export default Header;

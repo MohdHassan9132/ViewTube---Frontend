@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getWatchHistoryApi } from "../api/user/userApi.js";
-import VideoGrid from "../components/Video/VideoGrid.jsx";
+import { getWatchHistoryApi } from "../../api/user/userApi.js";
+import VideoGrid from "../../components/Video/VideoGrid/VideoGrid.jsx";
 
 function WatchHistory() {
   const [history, setHistory] = useState([]);

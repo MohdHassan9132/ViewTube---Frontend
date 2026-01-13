@@ -252,3 +252,119 @@
   color: #000;
 }
 
+/* -------- TABLET -------- */
+@media (max-width: 900px) {
+
+  .channel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .channel-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .channel-sub-btn {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .channel-tabs {
+    gap: 14px;
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+
+  .featured-video-box {
+    height: 160px;
+  }
+}
+
+
+
+/* -------- MOBILE -------- */
+@media (max-width: 600px) {
+
+  .channel-cover {
+    height: 150px;
+  }
+
+  .channel-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .channel-header {
+    padding: 15px;
+  }
+
+  .channel-info h2 {
+    font-size: 18px;
+  }
+
+  .channel-info p {
+    font-size: 13px;
+  }
+
+  .channel-tabs {
+    gap: 10px;
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .channel-tab-content {
+    padding: 15px;
+  }
+
+  /* Playlist grid tighter */
+  .playlist-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+
+  .playlist-img {
+    height: 100px;
+  }
+
+  /* Tweet items */
+  .tweet-card {
+    padding: 12px;
+  }
+
+  .tweet-header h4 {
+    font-size: 14px;
+  }
+
+  .tweet-content {
+    font-size: 14px;
+  }
+
+  /* Media grid stacking on small screens */
+  .tweet-media-item {
+    width: calc(33.33% - 6px);
+  }
+}
+
+
+
+/* -------- EXTRA SMALL -------- */
+@media (max-width: 420px) {
+
+  .playlist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tweet-media-item {
+    width: calc(50% - 6px);
+  }
+
+  .channel-tabs button {
+    font-size: 13px;
+  }
+}
+

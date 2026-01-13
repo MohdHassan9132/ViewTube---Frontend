@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getChannelProfileApi } from "../api/channel/channelApi";
-import {toggleChannelSubscriptionApi} from '../api/channel/channelApi'
-import ChannelTabs from "../components/channel/ChannelTabs";
+import { getChannelProfileApi } from "../../api/channel/channelApi";
+import {toggleChannelSubscriptionApi} from '../../api/channel/channelApi'
+import ChannelTabs from "../../components/channel/ChannelTabs";
 
-import "../styles/channel.css";
+import "../Channel/ChannelPage.css";
 
 function ChannelPage() {
   const { username } = useParams();  // <-- FIXED

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../../styles/yourVideos.css";
+import "../../Pages/YourVideos/YourVideos.css";
 import timeAgo from "../../utils/timeago";
 
 function YourVideoCard({ video, onTogglePublish, onDelete, onFeature }) {

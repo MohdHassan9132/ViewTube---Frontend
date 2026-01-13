@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllVideosApi } from "../../api/video/videoApi";
 import { getUserTweetsApi } from "../../api/tweet/tweetApi";
-import VideoGrid from "../Video/VideoGrid";
+import VideoGrid from "../Video/VideoGrid/VideoGrid";
 import TweetCard from "./TweetCard";
 
 function ChannelHomeTab({ userId }) {

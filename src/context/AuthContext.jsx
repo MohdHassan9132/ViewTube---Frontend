@@ -7,27 +7,35 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authChecked, setAuthChecked] = useState(false);
 
-  async function loadUser() {
+  // --- FIX: define loadUser OUTSIDE useEffect ---
+  const loadUser = async () => {
     try {
+      console.log("loadUser triggered");
       const res = await getUserApi();
       setUser(res.data.data);
-    } catch {
+    } catch (err) {
       setUser(null);
     } finally {
       setAuthChecked(true);
     }
-  }
+  };
 
   useEffect(() => {
     loadUser();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, authChecked, reloadUser: loadUser }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        authChecked,
+        reloadUser: loadUser, // now works
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
-// 🔴 THIS WAS MISSING
 export const useAuth = () => useContext(AuthContext);

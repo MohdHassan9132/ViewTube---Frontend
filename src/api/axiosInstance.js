@@ -22,12 +22,13 @@ api.interceptors.response.use(
     const originalRequest = err.config;
     const status = err.response?.status;
 
-    // Don't refresh when login failed
+    // Don't retry login
     if (originalRequest.url.includes("/user/login")) {
       return Promise.reject(err);
     }
 
-    if ((status === 498 || status === 401) && !originalRequest._retry) {
+    // ONLY refresh if access token expired
+    if (status === 498 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       if (isRefreshing) {
@@ -52,9 +53,9 @@ api.interceptors.response.use(
       }
     }
 
+    // If 401: user is logged out → do NOT retry → let ProtectedRoute redirect
     return Promise.reject(err);
   }
 );
-
 
 export default api;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllVideosApi } from "../../api/video/videoApi";
-import VideoGrid from "../Video/VideoGrid";
+import VideoGrid from "../Video/VideoGrid/VideoGrid";
 
 function ChannelVideosTab({ userId }) {
   const [videos, setVideos] = useState([]);

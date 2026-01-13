@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { getVideoByIdApi, updateVideoApi, togglePublishStatusApi } from "../api/video/videoApi";
+import { getVideoByIdApi, updateVideoApi, togglePublishStatusApi } from "../../api/video/videoApi";
 
-import "../styles/publish.css"; // reuse same styling used for upload
+import "../PublishStudio/Publish.css"; // reuse same styling used for upload
 
 function UpdateVideo() {
   const { videoId } = useParams();

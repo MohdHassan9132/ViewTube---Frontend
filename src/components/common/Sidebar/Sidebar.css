@@ -1,0 +1,122 @@
+/* Sidebar container */
+.sidebar {
+  width: 230px;
+  height: calc(100vh - 60px);
+  padding: 20px 15px;
+  background: #ffffff;
+  border-right: 1px solid #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /* NEW: Enable animation for desktop too */
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+/* Buttons */
+.side-btn {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #444;
+  transition: 0.25s ease;
+  text-decoration: none;
+}
+
+.side-btn:hover,
+.side-btn.active {
+  background-color: #e8f5ee;
+  color: #10b981;
+}
+
+.sub-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  gap: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.sub-item:hover {
+  background: #f4f4f4;
+}
+
+.sub-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.side-label {
+  margin-top: 12px;
+  margin-bottom: 4px;
+  padding-left: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7b7b7b;
+}
+
+.side-divider {
+  width: 100%;
+  border-top: 1px solid #e2e2e2;
+  margin: 10px 0;
+}
+
+/* Mobile: slide in/out */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    top: 60px;
+    width: 230px;
+    height: calc(100vh - 60px);
+    background: #fff;
+    z-index: 2000;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    position: fixed;         /* always fixed */
+    top: 60px;
+    left: 0;
+    height: calc(100vh - 60px);
+    transform: translateX(0); /* open state */
+    transition: transform 0.3s ease;
+    z-index: 2000;
+  }
+
+  .sidebar.closed {
+    transform: translateX(-250px); /* slide out */
+  }
+
+  /* push content to the right automatically */
+  .app-content {
+    margin-left: 230px;
+    transition: margin-left 0.3s ease;
+  }
+
+  /* when sidebar closed, reset margin */
+  .sidebar.closed ~ .app-content {
+    margin-left: 0;
+  }
+}
+

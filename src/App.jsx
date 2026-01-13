@@ -1,16 +1,17 @@
 import { Routes, Route } from "react-router-dom";
-import LikedVideos from "./Pages/LikedVideos.jsx";
-import Home from "./Pages/Home.jsx";
-import PublishStudio from "./Pages/PublishStudio.jsx";
+import LikedVideos from "../src/Pages/LikedVideos/LikedVideos.jsx";
+import Home from "../src/Pages/Home/Home.jsx";
+import PublishStudio from "../src/Pages/PublishStudio/PublishStudio.jsx";
 import Login from "./Pages/Auth/Login.jsx";
 import Register from "./Pages/Auth/Register.jsx";
 import ProtectedRoute from "./routes/ProtectedRoutes.jsx";
 import AppLayout from "./Layout/AppLayout.jsx";
-import YourVideos from './Pages/YourVideos.jsx'
-import UpdateVideo from './Pages/UpdateVideo.jsx'
-import VideoPage from "./Pages/VideoPage.jsx";
-import WatchHistory from "./Pages/WatchHistory.jsx";
-import ChannelPage from './Pages/ChannelPage.jsx'
+import YourVideos from '../src/Pages/YourVideos/YourVideos.jsx'
+import UpdateVideo from '../src/Pages/PublishStudio/UpdateVideo.jsx'
+import VideoPage from "../src/Pages/VideoView/VideoPage.jsx";
+import WatchHistory from "../src/Pages/WatchHistory/WatchHistory.jsx";
+import ChannelPage from '../src/Pages/Channel/ChannelPage.jsx'
+
 function App() {
   return (
     <Routes>
@@ -20,20 +21,28 @@ function App() {
       <Route path="/register" element={<Register />} />
 
       {/* Protected routes */}
-<Route element={<ProtectedRoute />}>
-  <Route element={<AppLayout />}>
-    <Route path="/" element={<Home />} />
-    <Route path="/channel/:username" element={<ChannelPage />} />
-    <Route path="/studio/upload" element={<PublishStudio hideSidebar/>} />
-    <Route path="/your-videos" element={<YourVideos hideSidebar/>} />
-    <Route path="/liked-videos" element={<LikedVideos hideSidebar />} />
-    <Route path="/update-video/:videoId" element={<UpdateVideo hideSidebar/>} />
-    <Route path="/video/:videoId" element={<VideoPage hideSidebar />} />
-    <Route path="/history" element={<WatchHistory hideSidebar/>} />
-  </Route>
-</Route>
+      <Route element={<ProtectedRoute />}>
+        <Route element={<AppLayout />}>
 
+          {/* FIX: index route */}
+          <Route index element={<Home />} />
 
+          <Route path="channel/:username" element={<ChannelPage />} />
+
+          <Route path="studio/upload" element={<PublishStudio />} />
+
+          <Route path="your-videos" element={<YourVideos />} />
+
+          <Route path="liked-videos" element={<LikedVideos />} />
+
+          <Route path="update-video/:videoId" element={<UpdateVideo />} />
+
+          <Route path="video/:videoId" element={<VideoPage />} />
+
+          <Route path="history" element={<WatchHistory />} />
+
+        </Route>
+      </Route>
 
     </Routes>
   );

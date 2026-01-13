@@ -94,3 +94,57 @@
     flex-direction: column;
   }
 }
+
+/* -------- TABLET -------- */
+@media (max-width: 900px) {
+  .studio-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .upload-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .preview-box {
+    width: 100%;
+  }
+}
+
+
+/* -------- MOBILE -------- */
+@media (max-width: 600px) {
+
+  .studio-page {
+    padding: 20px;
+  }
+
+  .studio-title {
+    font-size: 22px;
+  }
+
+  .upload-form {
+    padding: 15px;
+  }
+
+  .upload-form input,
+  .upload-form textarea {
+    font-size: 14px;
+  }
+
+  .upload-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .preview-box {
+    padding: 15px;
+  }
+
+  .preview-thumb {
+    height: auto;
+  }
+}
+

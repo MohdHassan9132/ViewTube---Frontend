@@ -1,5 +1,5 @@
-import "../styles/home.css";
-import VideoGrid from "../components/Video/VideoGrid.jsx";
+import "../Home/Home.css";
+import VideoGrid from "../../components/Video/VideoGrid/VideoGrid";
 
 function Home() {
   return (

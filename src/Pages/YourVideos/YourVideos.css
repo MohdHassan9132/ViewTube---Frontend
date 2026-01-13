@@ -70,3 +70,75 @@
 .yv-update { background: #3b82f6; text-align: center; text-decoration: none; }
 .yv-delete { background: #ef4444; }
 .yv-feature { background: #f59e0b; }
+
+/* -------- TABLET -------- */
+@media (max-width: 900px) {
+
+  .your-video-card {
+    gap: 12px;
+  }
+
+  .your-video-thumb img {
+    width: 130px;
+    height: 80px;
+  }
+
+  .your-video-title {
+    font-size: 16px;
+  }
+}
+
+
+/* -------- MOBILE -------- */
+@media (max-width: 600px) {
+
+  .your-video-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .your-video-thumb img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .your-video-info {
+    width: 100%;
+  }
+
+  .your-video-actions {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .yv-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+
+/* -------- EXTRA SMALL -------- */
+@media (max-width: 420px) {
+
+  .your-video-thumb img {
+    height: 150px;
+  }
+
+  .your-video-title {
+    font-size: 15px;
+  }
+
+  .your-video-actions {
+    flex-direction: column;
+  }
+
+  .yv-btn {
+    width: 100%;
+  }
+}
+

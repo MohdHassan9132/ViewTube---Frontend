@@ -1,31 +1,32 @@
-import { Outlet, useLocation } from "react-router-dom";
-import Header from "../components/common/Header";
-import Sidebar from "../components/common/Sidebar";
-import "../styles/header.css";
-import "../styles/sidebar.css";
+import { Outlet } from "react-router-dom";
+import Header from "../components/common/Header/Header";
+import Sidebar from "../components/common/Sidebar/Sidebar";
+import "../components/common/Header/Header.css";
+import "../components/common/Sidebar/Sidebar.css";
 import { useState } from "react";
 
 function AppLayout() {
-  const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  function toggleSidebar() {
+    setSidebarOpen((prev) => !prev);
+  }
 
-  // Only show sidebar on HOME page or when toggled manually
-  const isHome = location.pathname === "/";
+  function closeSidebar() {
+    setSidebarOpen(false);
+  }
 
   return (
     <div className="app-container">
-
-      <Header toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+      <Header toggleSidebar={toggleSidebar} />
 
       <div className="app-body">
-        {(isHome || sidebarOpen) && <Sidebar />}
+        <Sidebar isOpen={sidebarOpen} closeSidebar={closeSidebar} />
 
         <div className="app-content">
           <Outlet />
         </div>
       </div>
-
     </div>
   );
 }

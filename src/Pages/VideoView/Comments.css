@@ -60,3 +60,52 @@
   color: red;
   font-size: 18px;
 }
+
+/* -------- TABLET -------- */
+@media (max-width: 900px) {
+  .comment-input-row {
+    gap: 8px;
+  }
+}
+
+
+/* -------- MOBILE -------- */
+@media (max-width: 600px) {
+
+  .comments-section {
+    padding: 12px;
+  }
+
+  .comment-input-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .comment-post-btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .comment-card {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .comment-avatar {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+
+/* -------- EXTRA SMALL -------- */
+@media (max-width: 420px) {
+
+  .comment-input {
+    font-size: 14px;
+  }
+
+  .comment-post-btn {
+    font-size: 14px;
+  }
+}
