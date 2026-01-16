@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUserTweetsApi } from "../../api/tweet/tweetApi";
 import TweetFeedCard from "../../components/Tweet/TweetFeedCard/TweetFeedCard";
-import CreateTweet from "../../components/tweet/CreateTweet/CreateTweet"; 
+import CreateTweet from "../../components/Tweet/CreateTweet/CreateTweet"; 
 import "./TweetFeed.css";
 
 function TweetFeed() {
