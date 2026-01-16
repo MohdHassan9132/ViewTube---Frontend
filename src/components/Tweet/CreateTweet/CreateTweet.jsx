@@ -14,22 +14,27 @@ function CreateTweet({ onClose, onCreated }) {
 
   const removeMedia = () => setMedia(null);
 
-  const handleCreate = async () => {
-    if (!content.trim() && !media) return;
+const handleCreate = async () => {
+  if (!content.trim()) return; // ⛔ stop if no text
 
-    const formData = new FormData();
-    formData.append("content", content);
-    if (media) formData.append("media", media);
+  const formData = new FormData();
+  formData.append("content", content);
 
-    setLoading(true);
-    try {
-      await createTweetApi(formData);
-      onCreated();
-    } catch (err) {
-      console.log("CREATE ERROR:", err);
-    }
+  if (media) {
+    formData.append("media", media);
+  }
+
+  setLoading(true);
+  try {
+    await createTweetApi(formData);
+    onCreated();
+  } catch (err) {
+    console.error("CREATE ERROR:", err);
+  } finally {
     setLoading(false);
-  };
+  }
+};
+
 
   const isVideo = media && media.type.startsWith("video");
   const isImage = media && media.type.startsWith("image");
