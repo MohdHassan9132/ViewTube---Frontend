@@ -1,0 +1,49 @@
+.tweetfeed-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f6f7f9;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+.tweetfeed-center-column {
+  width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tweetfeed-loading,
+.tweetfeed-empty {
+  text-align: center;
+  color: #666;
+  padding: 10px 0;
+}
+
+/* Floating Create Button */
+.tweetfeed-create-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 35px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.tweetfeed-create-btn:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 700px) {
+  .tweetfeed-center-column {
+    width: 100%;
+  }
+}

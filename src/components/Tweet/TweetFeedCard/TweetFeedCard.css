@@ -1,0 +1,151 @@
+/* CARD WRAPPER */
+.tweetfeedcard {
+  width: 100%;
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #e5e5e5;
+}
+
+/* HEADER */
+.tweetfeedcard-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tweetfeedcard-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tweetfeedcard-username {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+.tweetfeedcard-time {
+  font-size: 13px;
+  color: #777;
+}
+
+/* CONTENT */
+.tweetfeedcard-content {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* EDIT MODE */
+.tweetfeedcard-edit-input {
+  width: 100%;
+  min-height: 80px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.tweetfeedcard-edit-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.save-btn {
+  background: #10b981;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #ccc;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* MEDIA */
+.tweetfeedcard-media {
+  width: 100%;
+  max-height: 450px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: #f3f3f3;
+}
+
+/* FOOTER ACTIONS */
+.tweetfeedcard-footer {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 5px;
+}
+
+/* LIKE BUTTON */
+.tweetfeedcard-like {
+  background: #eef1f3;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.tweetfeedcard-like:hover {
+  background: #dfe4e7;
+}
+
+.tweetfeedcard-like.liked {
+  background: #10b981;
+  color: white;
+  font-weight: 600;
+}
+
+/* EDIT / DELETE BUTTONS */
+.tweetfeedcard-edit-btn,
+.tweetfeedcard-delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.tweetfeedcard-edit-btn {
+  color: #10b981;
+}
+
+.tweetfeedcard-delete-btn {
+  color: red;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .tweetfeedcard {
+    padding: 14px;
+  }
+
+  .tweetfeedcard-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tweetfeedcard-content {
+    font-size: 14px;
+  }
+
+  .tweetfeedcard-media {
+    max-height: 320px;
+  }
+}

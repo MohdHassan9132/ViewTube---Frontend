@@ -54,14 +54,38 @@ return (
           <img src={user?.avatar || "/default-avatar.png"} className="header-avatar" />
           {openMenu && (
             <div className="profile-dropdown">
-              <p className="profile-name">{user?.username}</p>
-              <button className="dropdown-item" onClick={handleLogout}>Logout</button>
-            </div>
+  <p
+  className="dropdown-item"
+  onClick={() => navigate(`/channel/${user?.username}`)}
+  style={{ cursor: "pointer" }}
+>
+  {user?.username}
+</p>
+
+
+  <button
+    className="dropdown-item"
+    onClick={() => navigate("/update-profile")}
+  >
+    Update Profile
+  </button>
+
+  <button
+    className="dropdown-item"
+    onClick={() => navigate("/change-password")}
+  >
+    Change Password
+  </button>
+
+  <button className="dropdown-item" onClick={handleLogout}>
+    Logout
+  </button>
+</div>
+
           )}
         </div>
       </div>
     </header>
-
     {/* Mobile search dropdown OUTSIDE header */}
     {showSearch && (
       <div className="mobile-search-dropdown">

@@ -1,0 +1,28 @@
+.yourtweets-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f6f7f9;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.yourtweets-column {
+  width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.yourtweets-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 700px) {
+  .yourtweets-column {
+    width: 100%;
+  }
+}

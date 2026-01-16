@@ -113,10 +113,29 @@
   text-align: left;
   cursor: pointer;
   border-radius: 6px;
+  width: 100%;
+  display: block;
 }
 
 .dropdown-item:hover {
   background: #f1f1f1;
+  text-decoration: underline;
+}
+
+.dropdown-item {
+  padding: 8px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background: #f1f1f1;
+  text-decoration: underline;
 }
 
 
@@ -182,3 +201,24 @@
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+
+.password-field {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding-right: 10px;
+  margin-bottom: 15px;
+  background: white;
+}
+
+.password-field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px;
+  font-size: 14px;
+  background: transparent;
+}
+

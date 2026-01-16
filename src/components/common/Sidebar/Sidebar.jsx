@@ -65,6 +65,7 @@ function Sidebar({ isOpen, closeSidebar }) {
       <NavLink to="/your-videos" className="side-btn" onClick={closeSidebar}>
         🎥 Your Videos
       </NavLink>
+      <NavLink to="/your-tweets" className="side-btn">📝 Your Tweets</NavLink>
     </aside>
   );
 }

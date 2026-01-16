@@ -252,6 +252,23 @@
   color: #000;
 }
 
+.subscribers-count-btn {
+  background: white;
+  border: 1px solid #10b981;
+  padding: 6px 14px;
+  border-radius: 8px;
+  color: #10b981;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.subscribers-count-btn:hover {
+  background: #10b981;
+  color: white;
+}
+
+
 /* -------- TABLET -------- */
 @media (max-width: 900px) {
 

@@ -1,14 +1,66 @@
-.home-main {
-  padding: 20px;
-  width: 100%;
-  min-height: 100vh;
-  background: #f6f7f9;
+.home-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e5e5;
 }
-/* MOBILE */
+
+/* Title ALWAYS on left */
+.home-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Toggle aligned right */
+.home-toggle-bar {
+  display: flex;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.home-toggle-btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  color: #222;
+  transition: 0.2s ease;
+}
+
+.home-toggle-btn.active {
+  background: #10b981;
+  color: white;
+  font-weight: 600;
+}
+
+.home-toggle-btn:hover {
+  background: #f2f2f2;
+}
+
+/* Mobile fix */
 @media (max-width: 600px) {
-  .home-main {
-    padding: 12px;
+
+  .home-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .home-toggle-bar {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .home-title {
+    font-size: 18px;
   }
 }
-
-

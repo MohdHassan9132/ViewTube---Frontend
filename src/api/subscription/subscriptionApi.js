@@ -5,3 +5,7 @@ export const toggleSubscriptionApi = channelId =>
 
 export const getSubscribedChannelsApi = () =>
   api.get("/subscription/getSubscribedChannels");
+
+export const getSubscribersChannelApi = (channelId)=>{
+  api.get(`/getUserChannelSubscribers/${channelId}`)
+}

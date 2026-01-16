@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
   // --- FIX: define loadUser OUTSIDE useEffect ---
   const loadUser = async () => {
     try {
-      console.log("loadUser triggered");
       const res = await getUserApi();
       setUser(res.data.data);
     } catch (err) {

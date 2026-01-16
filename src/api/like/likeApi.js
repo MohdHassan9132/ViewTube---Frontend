@@ -8,3 +8,5 @@ export const toggleVideoLikeApi = videoId =>
 
 export const toggleTweetLikeApi = tweetId =>
   api.post(`/like/toggleTweetLike/${tweetId}`);
+export const toggleCommentLikeApi = commentId => 
+  api.post(`/like/toggleCommentLike/${commentId}`)
