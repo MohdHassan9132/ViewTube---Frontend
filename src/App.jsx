@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Auth/Login";
+import Login from "./Pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import ProtectedRoute from "./routes/ProtectedRoutes";
 import AppLayout from "./layouts/AppLayout";
