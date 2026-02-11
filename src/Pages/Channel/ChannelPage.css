@@ -1,387 +1,229 @@
-/* PAGE LAYOUT */
 .channel-page {
-  width: 100%;
-  min-height: 100vh;
-  background: #f6f7f9;
+  min-height: calc(100vh - var(--header-height));
 }
 
-/* COVER IMAGE */
 .channel-cover {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
   position: relative;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+  overflow: hidden;
 }
 
-.channel-cover-img {
+.cover-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* fully visible */
-  background-color: #fff; /* optional background */
+  object-fit: cover;
 }
 
-
-/* HEADER BELOW COVER */
-.channel-header {
+.cover-upload-btn {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
-  gap: 20px;
-  background: white;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-full);
+  color: white;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.cover-upload-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.channel-header {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.channel-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
 }
 
 .channel-avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  border: 4px solid var(--bg-primary);
   object-fit: cover;
 }
 
-.channel-info h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.channel-info p {
-  margin: 5px 0 0 0;
-  color: #666;
-}
-
-.channel-sub-btn {
-  margin-left: auto;
-  background: #10b981;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+.avatar-upload-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-blue);
+  border-radius: var(--radius-full);
   color: white;
   cursor: pointer;
+  transition: background-color var(--transition-fast);
 }
 
-/* TABS */
-.channel-tabs-container {
-  width: 100%;
-  background: white;
-  border-bottom: 1px solid #ddd;
+.avatar-upload-btn:hover {
+  background: var(--accent-blue-hover);
+}
+
+.channel-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.channel-name {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-extrabold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.channel-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.subscribe-btn {
+  padding: var(--space-3) var(--space-8);
+  background: var(--accent-red);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: var(--text-md);
+  font-weight: var(--font-bold);
+  transition: background-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.subscribe-btn:hover {
+  background: var(--accent-red-hover);
+}
+
+.subscribe-btn.subscribed {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.subscribe-btn.subscribed:hover {
+  background: var(--bg-hover);
 }
 
 .channel-tabs {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
   display: flex;
-  gap: 20px;
-  padding: 15px 20px;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: var(--header-height);
+  background: var(--bg-primary);
+  z-index: var(--z-sticky);
 }
 
-.channel-tabs button {
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  padding-bottom: 5px;
-  cursor: pointer;
+.tab-btn {
+  padding: var(--space-4) var(--space-6);
+  color: var(--text-secondary);
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+  position: relative;
 }
 
-.channel-tabs button.active {
-  border-bottom: 3px solid #10b981;
-  font-weight: 600;
+.tab-btn:hover {
+  color: var(--text-primary);
 }
 
-/* TAB CONTENT */
-.channel-tab-content {
-  padding: 20px;
+.tab-btn.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-blue);
 }
 
-/* FEATURED VIDEO BOX */
-.featured-video-box {
-  width: 100%;
-  height: 200px;
-  background: #eaeaea;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #555;
-  margin-bottom: 20px;
+.channel-content {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
 }
 
-/* VIDEOGRID REUSE – NO EDIT REQUIRED */
-
-/* PLAYLISTS */
-.playlist-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+.about-section {
+  padding: var(--space-6);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
 }
 
-.playlist-card {
-  background: white;
-  padding: 10px;
-  border-radius: 12px;
-  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+.about-section h3 {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4) 0;
 }
 
-.playlist-img {
-  width: 100%;
-  height: 120px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.playlist-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin-top: 8px;
-}
-
-.playlist-meta {
-  font-size: 13px;
-  color: #666;
-}
-
-/* TWEET CARD */
-.tweet-card {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-
-/* TWEET HEADER */
-.tweet-header {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.tweet-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.tweet-header h4 {
+.about-section p {
+  color: var(--text-secondary);
   margin: 0;
-  font-size: 15px;
-  font-weight: 600;
 }
 
-.tweet-header span {
-  font-size: 12px;
-  color: #777;
-}
-
-/* CONTENT */
-.tweet-content {
-  font-size: 15px;
-  margin: 8px 0;
-}
-
-/* MEDIA */
-.tweet-media {
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 8px;
-}
-
-/* LIKE BUTTON */
-.tweet-like-btn {
-  margin-top: 10px;
-  background: #efefef;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.tweet-like-btn:hover {
-  background: #ddd;
-}
-
-/* MEDIA GRID */
-.tweet-media-grid {
+.channel-loading,
+.channel-error {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--header-height));
+  color: var(--text-secondary);
 }
 
-/* BASE MEDIA ITEM */
-.tweet-media-item {
-   width: calc(20% - 6px);
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-/* IMAGE + VIDEO ELEMENTS */
-.tweet-media,
-.tweet-media-video {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  display: block;
-}
-
-.section-block {
-  padding-bottom: 25px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid #ddd;
-}
-
-.tab-sort-row {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.tab-sort-row button {
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  padding-bottom: 5px;
-  cursor: pointer;
-  color: #444;
-}
-
-.tab-sort-row button.active {
-  border-bottom: 3px solid #10b981;
-  font-weight: 600;
-  color: #000;
-}
-
-.subscribers-count-btn {
-  background: white;
-  border: 1px solid #10b981;
-  padding: 6px 14px;
-  border-radius: 8px;
-  color: #10b981;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.subscribers-count-btn:hover {
-  background: #10b981;
-  color: white;
-}
-
-
-/* -------- TABLET -------- */
-@media (max-width: 900px) {
+/* Mobile */
+@media (max-width: 768px) {
+  .channel-cover {
+    height: 120px;
+  }
 
   .channel-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
-    text-align: left;
+    padding: var(--space-4);
+    gap: var(--space-4);
   }
 
   .channel-avatar {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
   }
 
-  .channel-sub-btn {
+  .channel-name {
+    font-size: var(--text-2xl);
+  }
+
+  .subscribe-btn {
     width: 100%;
-    text-align: center;
-    margin-left: 0;
-    margin-top: 10px;
   }
 
   .channel-tabs {
-    gap: 14px;
-    padding: 12px 16px;
     overflow-x: auto;
+    scrollbar-width: none;
   }
 
-  .featured-video-box {
-    height: 160px;
-  }
-}
-
-
-
-/* -------- MOBILE -------- */
-@media (max-width: 600px) {
-
-  .channel-cover {
-    height: 150px;
+  .channel-tabs::-webkit-scrollbar {
+    display: none;
   }
 
-  .channel-avatar {
-    width: 60px;
-    height: 60px;
-  }
-
-  .channel-header {
-    padding: 15px;
-  }
-
-  .channel-info h2 {
-    font-size: 18px;
-  }
-
-  .channel-info p {
-    font-size: 13px;
-  }
-
-  .channel-tabs {
-    gap: 10px;
-    font-size: 14px;
-    padding: 10px 12px;
-  }
-
-  .channel-tab-content {
-    padding: 15px;
-  }
-
-  /* Playlist grid tighter */
-  .playlist-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 14px;
-  }
-
-  .playlist-img {
-    height: 100px;
-  }
-
-  /* Tweet items */
-  .tweet-card {
-    padding: 12px;
-  }
-
-  .tweet-header h4 {
-    font-size: 14px;
-  }
-
-  .tweet-content {
-    font-size: 14px;
-  }
-
-  /* Media grid stacking on small screens */
-  .tweet-media-item {
-    width: calc(33.33% - 6px);
+  .tab-btn {
+    padding: var(--space-3) var(--space-4);
+    white-space: nowrap;
   }
 }
-
-
-
-/* -------- EXTRA SMALL -------- */
-@media (max-width: 420px) {
-
-  .playlist-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .tweet-media-item {
-    width: calc(50% - 6px);
-  }
-
-  .channel-tabs button {
-    font-size: 13px;
-  }
-}
-

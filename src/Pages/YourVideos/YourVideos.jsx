@@ -1,79 +1,145 @@
-import { useEffect, useState } from "react";
-import { getAllVideosApi, togglePublishStatusApi, deleteVideoApi } from "../../api/video/videoApi";
-import YourVideoCard from "../../components/Video/YourVideoCard";
-import "../YourVideos/YourVideos.css";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { getAllVideosApi, deleteVideoApi, togglePublishStatusApi } from "../../api/video/videoApi";
+import "../LikedVideos/LikedVideos.css";
 
-function YourVideos() {
+const YourVideos = () => {
+  const { user } = useAuth();
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const userId = localStorage.getItem("userId");
-
-  async function loadVideos() {
-    try {
-      const res = await getAllVideosApi({ userId });
-      setVideos(res.data?.data?.videos || []);
-    } catch (err) {
-      console.log("LOAD VIDEOS ERROR:", err);
-    }
-    setLoading(false);
-  }
-
   useEffect(() => {
-    loadVideos();
-  }, []);
+    if (!user) return;
+    fetchYourVideos();
+  }, [user]);
 
-  // Toggle publish button
-  async function handleTogglePublish(id) {
+  const fetchYourVideos = async () => {
     try {
-      await togglePublishStatusApi(id);
-      loadVideos();
-    } catch (err) {
-      console.log("TOGGLE ERROR:", err);
-    }
-  }
+      const res = await getAllVideosApi({
+        userId: user._id,
+      });
 
-  // Delete button
-  async function handleDelete(id) {
-    if (!confirm("Delete this video?")) return;
+      setVideos(res?.data?.data?.videos || []);
+    } catch (error) {
+      console.error("Failed to fetch videos:", error);
+      setVideos([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleTogglePublish = async (videoId) => {
+    try {
+      const res = await togglePublishStatusApi(videoId);
+      const newStatus = res.data.data.isPublished;
+      
+      setVideos(prev => 
+        prev.map(v => 
+          v._id === videoId ? { ...v, isPublished: newStatus } : v
+        )
+      );
+    } catch (error) {
+      console.error("Failed to toggle publish status:", error);
+    }
+  };
+
+  const handleDelete = async (videoId) => {
+    if (!window.confirm("Are you sure you want to delete this video?")) return;
 
     try {
-      await deleteVideoApi(id);
-      loadVideos();
-    } catch (err) {
-      console.log("DELETE ERROR:", err);
+      await deleteVideoApi(videoId);
+      setVideos((prev) => prev.filter((v) => v._id !== videoId));
+    } catch (error) {
+      console.error("Failed to delete video:", error);
     }
-  }
+  };
 
-  // Feature button (just UI, not functional yet)
-  function handleFeature(id) {
-    alert("Feature functionality will be added later.");
+  if (loading) {
+    return (
+      <div className="page-loading">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   return (
-    <div className="your-video-page">
-
-      <h2 className="yv-title">Your Videos</h2>
-
-      {loading && <p>Loading...</p>}
-
-      {!loading && videos.length === 0 && (
-        <p>No videos uploaded yet.</p>
-      )}
-
-      <div className="your-videos-list">
-        {videos.map((v) => (
-          <YourVideoCard
-            key={v._id}
-            video={v}
-            onTogglePublish={handleTogglePublish}
-            onDelete={handleDelete}
-            onFeature={handleFeature}
-          />
-        ))}
+    <div className="your-videos-page">
+      <div className="page-header">
+        <h1>Your Videos</h1>
+        <p>{videos.length} videos</p>
       </div>
+
+      {videos.length === 0 ? (
+        <div className="empty-state">
+          <h3>No videos uploaded</h3>
+          <p>Upload your first video to get started</p>
+        </div>
+      ) : (
+        <div className="video-grid">
+          {videos.map((video) => (
+            <div key={video._id} className="video-card">
+              <Link to={`/video/${video._id}`}>
+                <div className="video-thumbnail">
+                  <img src={video.thumbnail} alt={video.title} />
+                  <div className={`status-badge ${video.isPublished ? 'published' : 'unpublished'}`}>
+                    {video.isPublished ? 'Published' : 'Unpublished'}
+                  </div>
+                </div>
+              </Link>
+
+              <div className="video-info">
+                <h3 className="video-title line-clamp-2">
+                  {video.title}
+                </h3>
+
+                <div className="video-meta">
+                  <span>{video.views} views</span>
+                </div>
+
+                <div
+                  className="video-actions"
+                  style={{
+                    display: "flex",
+                    gap: "var(--space-2)",
+                    marginTop: "var(--space-2)",
+                    flexWrap: "wrap"
+                  }}
+                >
+                  <button 
+                    onClick={() => handleTogglePublish(video._id)}
+                    className={`btn-secondary ${video.isPublished ? 'active-status' : ''}`}
+                    style={{ 
+                      color: "white", 
+                      borderColor: video.isPublished ? '#cfd9de' : 'transparent',
+                      backgroundColor: video.isPublished ? 'rgba(0, 186, 124, 0.1)' : 'rgba(239, 243, 244, 0.1)'
+                    }}
+                  >
+                    {video.isPublished ? "Unpublish" : "Publish"}
+                  </button>
+
+                  <Link
+                    to={`/update-video/${video._id}`}
+                    className="btn-secondary"
+                  >
+                    Edit
+                  </Link>
+
+                  <button
+                    onClick={() => handleDelete(video._id)}
+                    className="btn-secondary"
+                    style={{ color: "#f4212e" }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default YourVideos;

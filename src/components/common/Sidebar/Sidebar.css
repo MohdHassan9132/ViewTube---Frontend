@@ -1,122 +1,113 @@
-/* Sidebar container */
+/* Sidebar.css - X Style Refactor */
+
 .sidebar {
-  width: 230px;
-  height: calc(100vh - 60px);
-  padding: 20px 15px;
-  background: #ffffff;
-  border-right: 1px solid #e6e6e6;
+  /* Mobile default defaults */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  padding: 10px 12px;
+  gap: 4px;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s var(--ease-out);
+  overflow-y: auto;
+}
 
-  /* NEW: Enable animation for desktop too */
+.sidebar.open {
   transform: translateX(0);
-  transition: transform 0.3s ease;
 }
 
-/* Buttons */
-.side-btn {
-  width: 80%;
-  padding: 12px 14px;
-  border: none;
-  background: transparent;
-  text-align: left;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #444;
-  transition: 0.25s ease;
-  text-decoration: none;
-}
-
-.side-btn:hover,
-.side-btn.active {
-  background-color: #e8f5ee;
-  color: #10b981;
-}
-
+/* Sidebar Links */
+.side-btn,
 .sub-item {
   display: flex;
   align-items: center;
-  padding: 10px 14px;
-  gap: 12px;
-  border-radius: 10px;
+  gap: 20px;
+  padding: 12px;
+  border-radius: 9999px;
+  /* Pill shape like X */
+  color: var(--text-primary);
+  font-size: 20px;
+  /* Larger font like X */
+  text-decoration: none;
+  font-weight: 400;
+  transition: background-color 0.2s;
   cursor: pointer;
-  transition: 0.25s ease;
 }
 
-.sub-item:hover {
-  background: #f4f4f4;
+.side-btn:hover,
+.sub-item:hover,
+.side-btn.active {
+  background-color: var(--bg-tertiary);
+  font-weight: 700;
+  /* Bold on selection */
+  color: var(--text-primary);
+  /* Keep white/light */
 }
 
-.sub-avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  object-fit: cover;
+/* Adjust icons */
+.side-btn svg,
+.side-btn span.icon {
+  font-size: 26px;
 }
 
 .side-label {
-  margin-top: 12px;
-  margin-bottom: 4px;
-  padding-left: 4px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #7b7b7b;
+  padding: 16px 12px 8px 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .side-divider {
-  width: 100%;
-  border-top: 1px solid #e2e2e2;
+  border: 0;
+  border-top: 1px solid var(--border-color);
   margin: 10px 0;
+  width: 100%;
 }
 
-/* Mobile: slide in/out */
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    left: -250px;
-    top: 60px;
-    width: 230px;
-    height: calc(100vh - 60px);
-    background: #fff;
-    z-index: 2000;
-    transition: left 0.3s ease;
-  }
-
-  .sidebar.open {
-    left: 0;
-  }
+.sub-item {
+  font-size: 16px;
+  /* Slightly smaller for subs */
+  padding: 10px 12px;
 }
 
+.sub-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--bg-tertiary);
+}
+
+/* Text alignment fix for buttons that wrap text */
+.side-btn span,
+.sub-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Desktop: Always visible */
 @media (min-width: 769px) {
   .sidebar {
-    position: fixed;         /* always fixed */
-    top: 60px;
-    left: 0;
-    height: calc(100vh - 60px);
-    transform: translateX(0); /* open state */
-    transition: transform 0.3s ease;
-    z-index: 2000;
+    transform: translateX(0);
+    top: var(--header-height);
+    /* Below header */
+    height: calc(100vh - var(--header-height));
+    /* If we want full height sidebar (X style), we'd remove top:60px, 
+       but we have a Header component. Let's keep it below existing header for now. */
+    border-right: 1px solid var(--border-color);
+    width: var(--sidebar-width);
   }
 
-  .sidebar.closed {
-    transform: translateX(-250px); /* slide out */
-  }
-
-  /* push content to the right automatically */
-  .app-content {
-    margin-left: 230px;
-    transition: margin-left 0.3s ease;
-  }
-
-  /* when sidebar closed, reset margin */
-  .sidebar.closed ~ .app-content {
-    margin-left: 0;
-  }
+  /* If using a mini-sidebar logic we'd need another class, 
+     but for now we assume full width sidebar on desktop. */
 }
-

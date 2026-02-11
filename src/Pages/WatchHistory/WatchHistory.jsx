@@ -1,37 +1,51 @@
-import { useEffect, useState } from "react";
-import { getWatchHistoryApi } from "../../api/user/userApi.js";
-import VideoGrid from "../../components/Video/VideoGrid/VideoGrid.jsx";
+import React, { useState, useEffect } from "react";
+import { getWatchHistoryApi } from "../../api/user/userApi";
+import VideoGrid from "../../components/VideoGrid/VideoGrid";
+import "../LikedVideos/LikedVideos.css";
 
-function WatchHistory() {
-  const [history, setHistory] = useState([]);
+const WatchHistory = () => {
+  const [videos, setVideos] = useState(null); // null initial state to differentiate loading
   const [loading, setLoading] = useState(true);
 
-  async function loadHistory() {
+  useEffect(() => {
+    fetchHistory();
+  }, []);
+
+  const fetchHistory = async () => {
     try {
       const res = await getWatchHistoryApi();
 
-      // API returns watchHistory array of video objects
-      setHistory(res.data?.data?.watchHistory || []);
+      // CORRECT PATH
+      const history = res?.data?.data?.watchHistory;
 
-    } catch (err) {
-      console.log("HISTORY ERROR:", err);
+      // GUARANTEE ARRAY
+      setVideos(Array.isArray(history) ? history : []);
+    } catch (error) {
+      console.error("Failed to fetch history:", error);
+      setVideos([]);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
+  };
+
+  if (loading) {
+    return (
+      <div className="page-loading">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
-  useEffect(() => {
-    loadHistory();
-  }, []);
-
-  if (loading) return <p style={{ padding: 20 }}>Loading watch history...</p>;
-
   return (
-    <div className="home-main">
-      <h2 style={{ marginBottom: "15px", color: "#10b981" }}>Watch History</h2>
+    <div className="watch-history-page">
+      <div className="page-header">
+        <h1>Watch History</h1>
+        <p>{videos?.length || 0} videos</p>
+      </div>
 
-      <VideoGrid videos={history} />
+      <VideoGrid videos={videos || []} />
     </div>
   );
-}
+};
 
 export default WatchHistory;

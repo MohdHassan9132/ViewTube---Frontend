@@ -1,0 +1,71 @@
+/* TweeTube Design System */
+/* Inspired by X (Twitter) and YouTube Dark Mode */
+
+:root {
+  /* --- Color Palette --- */
+  
+  /* Backgrounds */
+  --bg-primary: #000000;   /* Deepest black for main background (X style) */
+  --bg-secondary: #0a0a0a;  /* Slightly lighter for cards/sections */
+  --bg-tertiary: #16181c;   /* Borders, inputs, hover states */
+  --bg-sidebar: #000000;    /* Sidebar background */
+  --bg-modal: rgba(91, 112, 131, 0.4); /* Glassmorphism overlay base */
+
+  /* Text */
+  --text-primary: #e7e9ea;  /* Almost white */
+  --text-secondary: #71767b; /* Muted gray (X style) */
+  --text-muted: #536471;    /* Darker gray */
+
+  /* Accents */
+  --accent-blue: #1d9bf0;   /* X Blue */
+  --accent-blue-hover: #1a8cd8;
+  --accent-red: #f91880;    /* Like/Action Red (similar to X heart) */
+  --accent-green: #00ba7c;  /* Retweet/Success Green */
+  --youtube-red: #ff0000;   /* YouTube brand color */
+  
+  /* Borders */
+  --border-color: #2f3336;  /* Subtle divider color */
+  
+  /* --- Typography --- */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* --- Spacing & Layout --- */
+  --sidebar-width: 275px;   /* X-style wide sidebar */
+  --sidebar-width-collapsed: 88px;
+  --header-height: 53px;    /* Glass header height */
+  
+  /* --- Glassmorphism --- */
+  --glass-bg: rgba(0, 0, 0, 0.65);
+  --glass-backdrop: blur(12px);
+  
+  /* --- Transitions --- */
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --transition-fast: 0.2s ease;
+}
+
+/* Universal Reset adjustments for the theme */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}

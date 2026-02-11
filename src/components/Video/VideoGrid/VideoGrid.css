@@ -1,8 +1,11 @@
 /* GRID */
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* Slightly larger cards */
+  gap: 16px 16px;
+  /* Row Gap, Col Gap */
+  padding: 20px 0;
 }
 
 /* CARD */
@@ -11,21 +14,33 @@
   color: inherit;
   display: flex;
   flex-direction: column;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
 }
 
 /* THUMBNAIL */
 .thumb-container {
   position: relative;
   width: 100%;
-  height: 160px;
+  aspect-ratio: 16/9;
+  /* Enforce 16:9 ratio */
   border-radius: 12px;
   overflow: hidden;
+  background-color: var(--bg-tertiary);
+  /* Loading state placeholder color */
 }
 
 .thumb-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+.video-card-yt:hover .thumb-img {
+  opacity: 0.9;
 }
 
 /* DURATION BADGE */
@@ -35,17 +50,20 @@
   right: 6px;
   background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 2px 6px;
+  padding: 3px 4px;
   font-size: 12px;
   border-radius: 4px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 /* INFO ROW */
 .info-row {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 0 4px;
 }
 
 /* AVATAR */
@@ -54,60 +72,50 @@
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  background-color: var(--bg-tertiary);
 }
 
 /* TEXT SECTION */
 .info-text {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  /* Important for truncation */
 }
 
 .info-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 4px;
-  color: black;
+  margin: 0 0 4px 0;
+  color: var(--text-primary);
+  line-height: 1.4;
+  /* Truncate at 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .info-meta {
-  font-size: 13px;
-  color: #666;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.info-meta:hover {
+  color: var(--text-primary);
 }
 
 /* RESPONSIVE */
 @media (max-width: 600px) {
   .video-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-/* Tablet */
-@media (max-width: 900px) {
-  .video-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
+    gap: 20px;
   }
 
   .thumb-container {
-    height: 150px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-  .video-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .thumb-container {
-    height: 180px;
-  }
-
-  .info-title {
-    font-size: 14px;
-  }
-
-  .info-meta {
-    font-size: 12px;
+    border-radius: 0;
+    /* Edge to edge on mobile? Or keep rounded. YouTube keeps rounded now usually. */
   }
 }

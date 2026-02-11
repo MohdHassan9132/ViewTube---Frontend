@@ -1,46 +1,173 @@
-/* CARD WRAPPER */
+/* TweetFeedCard.css - X Style Refactor */
+
 .tweetfeedcard {
   width: 100%;
-  background: #ffffff;
-  padding: 18px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: transparent;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
-  flex-direction: column;
   gap: 12px;
-  border: 1px solid #e5e5e5;
+  /* Hover effect for the whole tweet like X */
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-/* HEADER */
-.tweetfeedcard-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.tweetfeedcard:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  /* Subtle hover */
+}
+
+/* LEFT COLUMN: AVATAR */
+.tweetfeedcard-left {
+  flex-shrink: 0;
 }
 
 .tweetfeedcard-avatar {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  background-color: var(--bg-tertiary);
+  transition: opacity 0.2s;
+}
+
+.tweetfeedcard-avatar:hover {
+  opacity: 0.9;
+}
+
+/* RIGHT COLUMN: CONTENT */
+.tweetfeedcard-right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER: Name + Handle + Time */
+.tweetfeedcard-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+  flex-wrap: wrap;
 }
 
 .tweetfeedcard-username {
-  font-size: 16px;
-  font-weight: 600;
-  color: #222;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
 }
 
+.tweetfeedcard-username:hover {
+  text-decoration: underline;
+}
+
+.tweetfeedcard-handle,
 .tweetfeedcard-time {
-  font-size: 13px;
-  color: #777;
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-weight: 400;
 }
 
-/* CONTENT */
+.tweetfeedcard-dot {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* CONTENT TEXT */
 .tweetfeedcard-content {
   font-size: 15px;
-  color: #333;
+  color: var(--text-primary);
   line-height: 1.5;
+  margin: 0 0 10px 0;
+  white-space: pre-wrap;
+  /* Preserve line breaks */
+  word-wrap: break-word;
+}
+
+/* MEDIA */
+.tweetfeedcard-media {
+  width: 100%;
+  border-radius: 16px;
+  /* High radius like X */
+  border: 1px solid var(--border-color);
+  margin-top: 8px;
+  max-height: 500px;
+  object-fit: cover;
+  /* Cover or Contain? X usually crops to decent aspect ratio */
+}
+
+/* FOOTER ACTIONS */
+.tweetfeedcard-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  max-width: 425px;
+  /* Limit width of actions not full width */
+}
+
+/* ACTION BUTTONS */
+.tweet-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.tweet-action-group {
+  display: flex;
+  align-items: center;
+}
+
+.tweet-action-icon {
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HOVER COLORS */
+.action-like:hover .tweet-action-icon {
+  background-color: rgba(249, 24, 128, 0.1);
+  color: var(--accent-red);
+}
+
+.action-like:hover span {
+  color: var(--accent-red);
+}
+
+.action-like.liked .tweet-action-icon,
+.action-like.liked span {
+  color: var(--accent-red);
+}
+
+.action-reply:hover .tweet-action-icon {
+  background-color: rgba(29, 155, 240, 0.1);
+  color: var(--accent-blue);
+}
+
+.action-reply:hover span {
+  color: var(--accent-blue);
+}
+
+.action-edit:hover .tweet-action-icon {
+  background-color: rgba(0, 186, 124, 0.1);
+  color: var(--accent-green);
+}
+
+.action-delete:hover .tweet-action-icon {
+  background-color: rgba(249, 24, 128, 0.1);
+  color: var(--accent-red);
 }
 
 /* EDIT MODE */
@@ -48,104 +175,25 @@
   width: 100%;
   min-height: 80px;
   resize: none;
-  border: 1px solid #ccc;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   border-radius: 8px;
   padding: 10px;
   font-size: 15px;
+  margin-bottom: 10px;
+  font-family: inherit;
 }
 
 .tweetfeedcard-edit-actions {
   display: flex;
   gap: 10px;
+  justify-content: flex-end;
 }
 
-.save-btn {
-  background: #10b981;
-  border: none;
-  padding: 8px 16px;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.cancel-btn {
-  background: #ccc;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* MEDIA */
-.tweetfeedcard-media {
-  width: 100%;
-  max-height: 450px;
-  border-radius: 12px;
-  object-fit: contain;
-  background: #f3f3f3;
-}
-
-/* FOOTER ACTIONS */
-.tweetfeedcard-footer {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  margin-top: 5px;
-}
-
-/* LIKE BUTTON */
-.tweetfeedcard-like {
-  background: #eef1f3;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.tweetfeedcard-like:hover {
-  background: #dfe4e7;
-}
-
-.tweetfeedcard-like.liked {
-  background: #10b981;
-  color: white;
-  font-weight: 600;
-}
-
-/* EDIT / DELETE BUTTONS */
-.tweetfeedcard-edit-btn,
-.tweetfeedcard-delete-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.tweetfeedcard-edit-btn {
-  color: #10b981;
-}
-
-.tweetfeedcard-delete-btn {
-  color: red;
-}
-
-/* MOBILE */
+/* Mobile */
 @media (max-width: 600px) {
   .tweetfeedcard {
-    padding: 14px;
-  }
-
-  .tweetfeedcard-avatar {
-    width: 40px;
-    height: 40px;
-  }
-
-  .tweetfeedcard-content {
-    font-size: 14px;
-  }
-
-  .tweetfeedcard-media {
-    max-height: 320px;
+    padding: 12px;
   }
 }

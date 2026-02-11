@@ -100,19 +100,27 @@ function VideoPage() {
     }
   }
 
-  async function handleToggleLike() {
-    try {
-      const res = await toggleVideoLikeApi(videoId);
-      const liked = res.data?.data?.liked;
+async function handleToggleLike() {
+  try {
+    const res = await toggleVideoLikeApi(videoId);
+    const liked = res.data?.data?.liked;
 
-      setVideo(prev => ({
+    setVideo(prev => {
+      if (!prev) return prev;
+
+      return {
         ...prev,
-        isLiked: liked ? 1 : 0
-      }));
-    } catch (err) {
-      console.log("LIKE ERROR:", err);
-    }
+        isLiked: liked,
+        likes: liked
+          ? prev.likes + 1
+          : Math.max(prev.likes - 1, 0)
+      };
+    });
+  } catch (err) {
+    console.log("LIKE ERROR:", err);
   }
+}
+
 
   async function handleToggleSubscribe() {
     try {

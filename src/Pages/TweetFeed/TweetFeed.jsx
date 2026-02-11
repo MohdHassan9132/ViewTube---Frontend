@@ -32,7 +32,6 @@ function TweetFeed() {
     loadTweets();
   }, []);
 
-  // refresh tweets after creating one
   const handleTweetCreated = () => {
     setShowCreate(false);
     loadTweets();
@@ -40,7 +39,6 @@ function TweetFeed() {
 
   return (
     <div className="tweetfeed-container">
-
       <div className="tweetfeed-center-column">
 
         {loading && <p className="tweetfeed-loading">Loading tweets...</p>}

@@ -1,25 +1,26 @@
 import { Routes, Route } from "react-router-dom";
-import LikedVideos from "../src/Pages/LikedVideos/LikedVideos.jsx";
-import Home from "../src/Pages/Home/Home.jsx";
-import PublishStudio from "../src/Pages/PublishStudio/PublishStudio.jsx";
-import Login from "./Pages/Auth/Login.jsx";
-import Register from "./Pages/Auth/Register.jsx";
-import ProtectedRoute from "./routes/ProtectedRoutes.jsx";
-import AppLayout from "./Layout/AppLayout.jsx";
-import YourVideos from '../src/Pages/YourVideos/YourVideos.jsx'
-import UpdateVideo from '../src/Pages/PublishStudio/UpdateVideo.jsx'
-import VideoPage from "../src/Pages/VideoView/VideoPage.jsx";
-import WatchHistory from "../src/Pages/WatchHistory/WatchHistory.jsx";
-import ChannelPage from '../src/Pages/Channel/ChannelPage.jsx'
-import ChangePassword from "./Pages/Auth/ChangePassword.jsx";
-import UpdateUserDetails from "./Pages/Auth/UpdateUserDetails.jsx";
-import SubscribersPage from "./Pages/SubscribersPage/SubscriberPage.jsx";
-import YourTweets from "./Pages/YourTweets/YourTweets.jsx";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
+import ProtectedRoute from "./routes/ProtectedRoutes";
+import AppLayout from "./layouts/AppLayout";
+import Home from "./pages/Home/Home";
+import VideoView from "./pages/VideoView/VideoView";
+import ChannelPage from "./pages/Channel/ChannelPage";
+import LikedVideos from "./pages/LikedVideos/LikedVideos";
+import WatchHistory from "./pages/WatchHistory/WatchHistory";
+import YourVideos from "./pages/YourVideos/YourVideos";
+import YourTweets from "./pages/YourTweets/YourTweets";
+import PublishVideo from "./pages/PublishVideo/PublishVideo";
+import UpdateVideo from "./pages/PublishVideo/UpdateVideo";
+import SubscribersPage from "./pages/Subscribers/SubscribersPage";
+import YourPlaylists from "./Pages/YourPlaylist/YourPlaylists";
+import PlaylistView from "./pages/PlaylistView/PlaylistView";
+import UpdateProfile from "./pages/Auth/UpdateProfile";
+import ChangePassword from "./pages/Auth/ChangePassword";
 
 function App() {
   return (
     <Routes>
-
       {/* Public routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -27,30 +28,22 @@ function App() {
       {/* Protected routes */}
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
-
-          {/* FIX: index route */}
           <Route index element={<Home />} />
-
+          <Route path="video/:videoId" element={<VideoView />} />
           <Route path="channel/:username" element={<ChannelPage />} />
-
-          <Route path="studio/upload" element={<PublishStudio />} />
-
-          <Route path="your-videos" element={<YourVideos />} />
-
+          <Route path="channel/:username/subscribers" element={<SubscribersPage />} />
           <Route path="liked-videos" element={<LikedVideos />} />
-
-          <Route path="update-video/:videoId" element={<UpdateVideo />} />
-
-          <Route path="video/:videoId" element={<VideoPage />} />
-
           <Route path="history" element={<WatchHistory />} />
-          <Route path="change-password" element={<ChangePassword/>}/>
-          <Route path="update-profile" element={<UpdateUserDetails/>}/>
-          <Route path="/channel/:username/subscribers" element={<SubscribersPage/>} />
-          <Route path="your-tweets" element={<YourTweets/>} />
+          <Route path="your-videos" element={<YourVideos />} />
+          <Route path="your-tweets" element={<YourTweets />} />
+          <Route path="your-playlists" element={<YourPlaylists />} />
+          <Route path="playlist/:playlistId" element={<PlaylistView />} />
+          <Route path="studio/upload" element={<PublishVideo />} />
+          <Route path="update-video/:videoId" element={<UpdateVideo />} />
+          <Route path="update-profile" element={<UpdateProfile />} />
+          <Route path="change-password" element={<ChangePassword />} />
         </Route>
       </Route>
-
     </Routes>
   );
 }

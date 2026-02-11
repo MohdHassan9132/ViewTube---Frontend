@@ -1,49 +1,69 @@
+/* TweetFeed.css */
+
 .tweetfeed-container {
   width: 100%;
-  min-height: 100vh;
-  background: #f6f7f9;
+  /* background handled by global body color now */
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 0;
   position: relative;
 }
 
 .tweetfeed-center-column {
-  width: 650px;
+  width: 100%;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  /* Separate tweets with border, not gap, for X style */
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  min-height: 100vh;
 }
 
 .tweetfeed-loading,
 .tweetfeed-empty {
   text-align: center;
-  color: #666;
-  padding: 10px 0;
+  color: var(--text-secondary);
+  padding: 20px 0;
+  font-size: 15px;
 }
 
 /* Floating Create Button */
 .tweetfeed-create-btn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #10b981;
+  bottom: 80px;
+  /* Above bottom bar on mobile? Or just standard position */
+  right: 30px;
+  background: var(--accent-blue);
   color: white;
   border: none;
-  padding: 14px 20px;
-  border-radius: 35px;
-  font-size: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 30px;
+  line-height: 1;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(29, 155, 240, 0.3);
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
 }
 
 .tweetfeed-create-btn:hover {
-  opacity: 0.9;
+  background-color: var(--accent-blue-hover);
 }
 
 @media (max-width: 700px) {
   .tweetfeed-center-column {
-    width: 100%;
+    border-left: none;
+    border-right: none;
+  }
+
+  .tweetfeed-create-btn {
+    bottom: 70px;
+    /* Adjust for mobile nav if it exists */
+    right: 20px;
   }
 }

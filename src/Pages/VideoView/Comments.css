@@ -1,173 +1,193 @@
+/* Comments.css */
+
 .comments-section {
-  margin-top: 25px;
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
+  margin-top: 24px;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.comments-section h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
 }
 
 .comment-input-row {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 30px;
+  align-items: flex-start;
 }
 
 .comment-input {
   flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 8px 0;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 15px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.comment-input:focus {
+  border-bottom-color: var(--text-primary);
 }
 
 .comment-post-btn {
-  padding: 10px 18px;
-  background: #10b981;
-  color: white;
-  border-radius: 8px;
+  padding: 8px 16px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 9999px;
   border: none;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
+/* Enable button style when typing? Needs JS state, but can style generic hover */
+.comment-post-btn:hover {
+  background-color: var(--text-primary);
+  color: black;
+}
+
+/* Comment Item */
 .comment-card {
   display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
+  gap: 16px;
+  margin-bottom: 24px;
   align-items: flex-start;
 }
 
 .comment-avatar {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--bg-tertiary);
 }
 
 .comment-body {
-  background: #f6f6f6;
-  padding: 10px 12px;
-  border-radius: 8px;
   flex: 1;
+  background: transparent;
+  padding: 0;
 }
 
 .comment-username {
   font-weight: 600;
-  color: #10b981;
-  margin-bottom: 5px;
-}
-
-.comment-delete-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: red;
-  font-size: 18px;
-}
-
-.comment-actions {
+  font-size: 13px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
   display: flex;
   gap: 8px;
   align-items: center;
 }
+/* Could add timestamp here if available in JSX */
 
-.comment-edit-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #10b981;
-  font-size: 18px;
+.comment-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin: 0 0 8px 0;
+  white-space: pre-wrap;
 }
 
-.comment-edit-input {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  margin-top: 5px;
-}
-
-.comment-edit-actions {
+/* Actions */
+.comment-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 6px;
+  gap: 16px;
+  align-items: center;
 }
-
-.comment-save-btn {
-  background: #10b981;
-  border: none;
-  color: white;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.comment-cancel-btn {
-  background: #ccc;
-  border: none;
-  color: black;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
 
 .comment-heart-btn {
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 12px;
   padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+}
+
+.comment-heart-btn .icon {
+  font-size: 16px;
+}
+
+.comment-heart-btn:hover {
+  color: var(--text-primary);
 }
 
 .comment-heart-btn.active {
-  transform: scale(1.1);
+  color: var(--accent-red);
 }
 
-
-
-
-/* -------- TABLET -------- */
-@media (max-width: 900px) {
-  .comment-input-row {
-    gap: 8px;
-  }
+.comment-edit-btn,
+.comment-delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
 }
 
+.comment-edit-btn:hover,
+.comment-delete-btn:hover {
+  color: var(--text-primary);
+}
 
-/* -------- MOBILE -------- */
+/* Edit Mode */
+.comment-edit-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  margin-top: 5px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.comment-edit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.comment-save-btn {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.comment-cancel-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.comment-cancel-btn:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* Mobile */
 @media (max-width: 600px) {
-
-  .comments-section {
-    padding: 12px;
-  }
-
   .comment-input-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .comment-post-btn {
-    width: 100%;
-    padding: 12px;
-  }
-
-  .comment-card {
-    flex-direction: column;
-    text-align: left;
-  }
-
-  .comment-avatar {
-    width: 32px;
-    height: 32px;
-  }
-}
-
-
-/* -------- EXTRA SMALL -------- */
-@media (max-width: 420px) {
-
-  .comment-input {
-    font-size: 14px;
-  }
-
-  .comment-post-btn {
-    font-size: 14px;
+    flex-direction: row; /* Keep row */
+    gap: 8px;
   }
 }

@@ -1,33 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import timeago from "../../utils/timeago";
 import { toggleTweetLikeApi } from "../../api/like/likeApi";
 
 function TweetCard({ tweet }) {
-  const [liked, setLiked] = useState(tweet.liked || false);
+  const [liked, setLiked] = useState(false);
   const [likeLoading, setLikeLoading] = useState(false);
+
+  // 🔑 SYNC STATE WITH BACKEND DATA
+  useEffect(() => {
+    setLiked(Boolean(tweet.isLiked));
+  }, [tweet.isLiked]);
 
   const handleLike = async () => {
     if (likeLoading) return;
+
     setLikeLoading(true);
 
     try {
       const res = await toggleTweetLikeApi(tweet._id);
-      setLiked(res.data.data.liked);
+
+      // toggle API returns { liked }
+      setLiked(res.data?.data?.liked);
     } catch (err) {
       console.error("Failed to toggle like:", err);
+    } finally {
+      setLikeLoading(false);
     }
-
-    setLikeLoading(false);
   };
 
-  // Convert media to array if it's a string
   const mediaArray = Array.isArray(tweet.media)
     ? tweet.media
     : tweet.media
     ? [tweet.media]
     : [];
-
-  const mediaCount = mediaArray.length;
 
   return (
     <div className="tweet-card">
@@ -45,15 +50,11 @@ function TweetCard({ tweet }) {
       <p className="tweet-content">{tweet.content}</p>
 
       {/* MEDIA */}
-      {mediaCount > 0 && (
-        <div className={`tweet-media-grid count-${mediaCount}`}>
+      {mediaArray.length > 0 && (
+        <div className={`tweet-media-grid count-${mediaArray.length}`}>
           {mediaArray.slice(0, 5).map((item, index) => (
             <div className="tweet-media-item" key={index}>
-              <img
-                src={item.url || item}
-                className="tweet-media"
-                alt="media"
-              />
+              <img src={item.url || item} className="tweet-media" alt="media" />
             </div>
           ))}
         </div>

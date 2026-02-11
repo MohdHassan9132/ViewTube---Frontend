@@ -1,74 +1,110 @@
-import { useState } from "react";
-import { changePasswordApi } from "../../api/user/userApi";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { changePasswordApi } from "../../api/user/userApi";
 import "./Auth.css";
 
-function ChangePassword() {
+const ChangePassword = () => {
   const navigate = useNavigate();
-
-  const [showOldPass, setShowOldPass] = useState(false);
-  const [showNewPass, setShowNewPass] = useState(false);
-
-  const [data, setData] = useState({
-    currentPassword: "",
-    newPassword: ""
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [showPasswords, setShowPasswords] = useState({
+    old: false,
+    new: false,
+  });
+  
+  const [formData, setFormData] = useState({
+    oldPassword: "",
+    newPassword: "",
   });
 
-  const [message, setMessage] = useState("");
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError("");
+    setSuccess("");
+  };
 
-  function handleChange(e) {
-    setData({ ...data, [e.target.name]: e.target.value });
-  }
-
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
+    setLoading(true);
+    setError("");
+    setSuccess("");
 
     try {
-      await changePasswordApi({
-        currentPassword: data.currentPassword,
-        newPassword: data.newPassword
-      });
-
-      setMessage("Password updated successfully");
-      setTimeout(() => navigate("/"), 1500);
-
+      await changePasswordApi(formData);
+      setSuccess("Password changed successfully!");
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
-      setMessage(err.response?.data?.message || "Error updating password");
+      setError(err.response?.data?.message || "Failed to change password");
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="auth-container">
-      <form className="auth-box" onSubmit={handleSubmit}>
-        <h2>Change Password</h2>
+    <div className="auth-page">
+      <div className="auth-container">
+        <div className="auth-box">
+          <div className="auth-header">
+            <h1>Change Password</h1>
+            <p>Update your password</p>
+          </div>
 
-        <div className="password-field">
-          <input
-            type={showOldPass ? "text" : "password"}
-            name="currentPassword"
-            placeholder="Current Password"
-            onChange={handleChange}
-          />
-          <span className="eye-toggle" onClick={() => setShowOldPass(!showOldPass)}>👁</span>
+          <form onSubmit={handleSubmit} className="auth-form">
+            {error && <div className="error-message">{error}</div>}
+            {success && <div className="auth-success">{success}</div>}
+
+            <div className="form-group">
+              <label htmlFor="oldPassword">Current Password</label>
+              <div className="password-input">
+                <input
+                  type={showPasswords.old ? "text" : "password"}
+                  id="oldPassword"
+                  name="oldPassword"
+                  value={formData.oldPassword}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPasswords({ ...showPasswords, old: !showPasswords.old })}
+                >
+                  {showPasswords.old ? "👁️" : "👁️‍🗨️"}
+                </button>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="newPassword">New Password</label>
+              <div className="password-input">
+                <input
+                  type={showPasswords.new ? "text" : "password"}
+                  id="newPassword"
+                  name="newPassword"
+                  value={formData.newPassword}
+                  onChange={handleChange}
+                  required
+                  minLength="6"
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPasswords({ ...showPasswords, new: !showPasswords.new })}
+                >
+                  {showPasswords.new ? "👁️" : "👁️‍🗨️"}
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" className="btn-primary" disabled={loading}>
+              {loading ? "Changing..." : "Change Password"}
+            </button>
+          </form>
         </div>
-
-        <div className="password-field">
-          <input
-            type={showNewPass ? "text" : "password"}
-            name="newPassword"
-            placeholder="New Password"
-            onChange={handleChange}
-          />
-          <span className="eye-toggle" onClick={() => setShowNewPass(!showNewPass)}>👁</span>
-        </div>
-
-        {message && <p style={{ color: "red" }}>{message}</p>}
-
-        <button type="submit">Update Password</button>
-      </form>
+      </div>
     </div>
   );
-}
+};
 
 export default ChangePassword;
