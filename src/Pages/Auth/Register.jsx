@@ -119,7 +119,7 @@ const Register = () => {
                 <button
                   type="button"
                   className="password-toggle"
-                  onClick={() => setShowPassword(showPassword)}
+                  onClick={() => setShowPassword(!showPassword)}
                   aria-label="Toggle password visibility"
                 >
                   {showPassword ? (

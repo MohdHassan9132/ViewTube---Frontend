@@ -22,23 +22,41 @@ const UpdateProfile = () => {
     setSuccess("");
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    setSuccess("");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
+  setSuccess("");
 
-    try {
-      await updateUserDetailsApi(formData);
-      await reloadUser();
-      setSuccess("Profile updated successfully!");
-      setTimeout(() => navigate(`/channel/${user.username}`), 2000);
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to update profile");
-    } finally {
-      setLoading(false);
+  try {
+    const payload = {};
+
+    if (formData.fullName && formData.fullName !== user.fullName) {
+      payload.fullName = formData.fullName;
     }
-  };
+
+    if (formData.email && formData.email !== user.email) {
+      payload.email = formData.email;
+    }
+
+    if (Object.keys(payload).length === 0) {
+      setError("No changes detected");
+      setLoading(false);
+      return;
+    }
+
+    await updateUserDetailsApi(payload);
+    await reloadUser();
+
+    setSuccess("Profile updated successfully!");
+
+    setTimeout(() => navigate(`/channel/${user.username}`), 2000);
+  } catch (err) {
+    setError(err.response?.data?.message || "Failed to update profile");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="auth-page">
@@ -61,7 +79,6 @@ const UpdateProfile = () => {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                required
               />
             </div>
 
@@ -73,7 +90,6 @@ const UpdateProfile = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
               />
             </div>
 

@@ -148,16 +148,16 @@
   color: white;
   font-size: var(--text-md);
   font-weight: var(--font-bold);
-  border: none;
+  border: white;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: background-color var(--transition-fast);
 }
-
 .btn-primary:hover:not(:disabled) {
-  background: var(--accent-blue-hover);
+  background: var(--accent-white-hover);
+  color: black;
+  background-color: white;
 }
-
 .btn-primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
