@@ -10,7 +10,7 @@ const PublishVideo = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    videoFile: null,
+    video: null,
     thumbnail: null,
   });
   const [preview, setPreview] = useState({
@@ -41,7 +41,7 @@ const PublishVideo = () => {
       const form = new FormData();
       form.append("title", formData.title);
       form.append("description", formData.description);
-      form.append("videoFile", formData.videoFile);
+      form.append("video", formData.videoFile);
       form.append("thumbnail", formData.thumbnail);
 
       await publishVideoApi(form);
